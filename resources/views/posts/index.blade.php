@@ -9,6 +9,16 @@
             </div>
         @endif
     </div>
+    <form action="{{ route('posts.index') }}" class="w-50 m-auto p-3" method="get">
+        <div class="row">
+            <div class="col-md-10">
+                <input type="text" class="form-control mb-3" placeholder="search" name="title">
+            </div>
+            <div class="col-md-2">
+                <input type="submit" class="form-control mb-3 btn btn-primary" value="Search">
+            </div>
+        </div>
+    </form>
     <a href="{{ route('posts.create') }}" class="btn btn-success">Create New Post</a>
     <div class="row g-5  m-0">
         @foreach ($posts as $p)

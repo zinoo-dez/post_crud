@@ -11,9 +11,13 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::paginate(6);
+        // $posts = Post::paginate(6);
+        $posts = Post::query()
+            ->when($request->title, fn ($q, $title) => $q->where('title', 'like', "%{$title}%"))
+            ->paginate(6)
+            ->withQueryString();
         Paginator::useBootstrap();
         // return $posts;
         return view('posts.index', compact('posts'));
